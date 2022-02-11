@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-import random
 import pygame as pg
-from pygame.math import Vector2
 from util import blit_rotate
 
 # locations of the launch pad
@@ -30,6 +28,7 @@ def get_base_positions( screen_w, screen_h ):
 	}
 
 class ImageGroupData:
+	""" This is a simple class to bundle a bunch of parameters (3 images and a coordinate)"""
 	def __init__(self, turret,
 					turret_pivot,
 					front_arm,
@@ -47,6 +46,10 @@ class ImageGroupData:
 
 
 class BaseEngine:
+	""" This class is a calculator class to make the code in the MissileTurret class easier to read.
+		This class takes in all the relevant data: base position, mouse target, turret pivot point
+		and calculates the rotations and the rects needed for the turret to display the correct image.
+	"""
 	def __init__(self, base_position:pg.Vector2):
 		self.base_pos = base_position
 
@@ -75,8 +78,8 @@ class BaseEngine:
 
 		# # create a vector from the world space pos of the rotation axis to the mouse location
 		# now calculate the vector to the mouse_pos from new_pivot_screen_space
-		to_target = pg.math.Vector2(target) - self.pivot_screen_space
-		straight_up = pg.math.Vector2(0, -1)
+		to_target = pg.Vector2(target) - self.pivot_screen_space
+		straight_up = pg.Vector2(0, -1)
 		self.angle = straight_up.angle_to(to_target)
 
 		self.turret_img, self.turret_rect = blit_rotate(self.orig_image, self.pivot_screen_space, self.turret_pivot, -self.angle)
