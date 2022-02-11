@@ -2,7 +2,6 @@
 
 import pygame as pg
 
-
 GROUND_EXPLOSION_Y_NUDGE = 8
 
 class Explosion(pg.sprite.Sprite):
@@ -18,12 +17,15 @@ class Explosion(pg.sprite.Sprite):
 		self.ticks = 0
 
 		self.rect = self.image.get_rect()
+		# there are two kinds of explosions: mid-air and on-the-ground.
+		# the mid-air explosions are placed by the center coordinate
+		# the on ground explosions are placed with respect to the midbottom coordinate
 		setattr(self.rect,placement,pos)
 		if placement=="midbottom":
 			self.rect.y = self.rect.y + GROUND_EXPLOSION_Y_NUDGE
 
 	def update(self):
-		# count ticks until reach ticks before advance, once that has reached, do something,
+		# count ticks until reach animation_delay before advance, once that has reached, update the sprite image
 		# otherwise skip
 		self.ticks += 1
 		

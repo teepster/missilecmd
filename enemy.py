@@ -10,7 +10,6 @@ from explosion import Explosion
 def generateRandomEnemyPath(screen_dim):
 	""" Figure out where along the top the enemy will appear,
 		Figure out what their bottom destination is
-		Figure out the speed.
 	"""
 	W,H = screen_dim
 	TOP_EDGE = 4
@@ -18,9 +17,9 @@ def generateRandomEnemyPath(screen_dim):
 	source_pos = random.randint(X_RANGE[0],X_RANGE[1]), TOP_EDGE
 	dest_pos = random.randint(X_RANGE[0],X_RANGE[1]), H
 	return source_pos, dest_pos
-	# where will the enemy appear?
 
 class EnemyPath(pg.sprite.Sprite):
+	""" The line from where the enemy appears to where it will land."""
 	def __init__(self,path):
 		pg.sprite.Sprite.__init__(self)
 		self.src, self.dest = path
@@ -53,7 +52,7 @@ class Enemy(pg.sprite.Sprite):
 	
 		# get the path object
 		self.path_object = EnemyPath( (launch_pos, destination_pos) )
-		self.game.rockets_and_paths_sprites.add( self.path_object )
+		self.game.missiles_and_paths_sprites.add( self.path_object )
 		
 		# explosion object. Beware, since the explosion starts at y = image_height,
 		# we have to offset it by half the image to get the explosion to appear where
@@ -128,7 +127,7 @@ class Enemy(pg.sprite.Sprite):
 				pg.mixer.Sound.play(self.ground_explosion_sound)
 				self.game.enemy_score += 1
 				# this needs to be done so that the explosion can start to render and update
-				self.game.rockets_and_paths_sprites.add(self.explosion_object)
+				self.game.missiles_and_paths_sprites.add(self.explosion_object)
 			else:
 				dx,dy = self.distance_traveled*self.sinrotation, self.distance_traveled*self.cosrotation
 				current_pos = self.src_pos[0] - int(dx), self.src_pos[1] - int(dy)

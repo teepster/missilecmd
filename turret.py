@@ -120,13 +120,13 @@ def setup_launcher_assets(base_positions):
 	CenterBaseEngine.set_image_group( LeftGroup )
 	RightBaseEngine.set_image_group( RightGroup )
 
-	LeftBase = Turret(LeftBaseEngine)
-	CenterBase = Turret(CenterBaseEngine)
-	RightBase = Turret(RightBaseEngine)
+	LeftBase = MissileTurret(LeftBaseEngine)
+	CenterBase = MissileTurret(CenterBaseEngine)
+	RightBase = MissileTurret(RightBaseEngine)
 
 	return LeftBase,CenterBase,RightBase
 
-class Turret:
+class MissileTurret:
 	def __init__(self,engine):
 		self.engine = engine
 		self.mouse_pos = pg.Vector2(960,0)
@@ -146,82 +146,3 @@ class Turret:
 							(self.engine.front_arm_img, self.engine.front_arm_rect),		
 						]
 			)
-
-
-# class MissileTurret:
-# 	# NOT A SPRITE OBJECT!!!!
-# 	# I am implementing my own update() and draw(screen) functions
-# 	def __init__(self,turret,
-# 					turret_pivot,
-# 					left_arm,
-# 					right_arm,
-# 					base_positions,
-# 					base_pos_number):
-
-# 		self.turret_img = turret
-# 		self.img_w, self.img_h = self.turret_img.get_size()
-# 		# rotate_pivot_coords is in image space
-# 		self.pivot_coords = turret_pivot
-# 		self.base_positions_dict = base_positions
-# 		self.base_pos = pg.Vector2(self.base_positions_dict[base_pos_number])
-# 		self.current_base_number = base_pos_number
-
-# 		# offset from base_pos (which is midbottom, so the x offset is from the middle of the image)
-# 		self.pivot_offset = pg.Vector2(	(self.img_w//2 - self.pivot_coords[0]),
-# 										(self.img_h - self.pivot_coords[1])
-# 										)
-
-		
-
-# 		# A reference to the original image to preserve the quality.
-# 		self.orig_image = self.turret_img
-# 		self.turret_rect = self.turret_img.get_rect(midbottom=self.base_pos)
-	
-# 		# angle to tilt the sprite by
-# 		self.angle = 0
-
-# 		# this will get it to point upwards initially
-# 		self.mouse_target = self.turret_rect.centerx, self.turret_rect.centery - 10 
-
-# 		# well need this when drawing the two static features
-# 		self.back_arm_img = right_arm
-# 		self.back_arm_rect = self.back_arm_img.get_rect(midbottom=self.base_pos)
-# 		self.front_arm_img = left_arm
-# 		self.front_arm_rect = self.front_arm_img.get_rect(midbottom=self.base_pos)
-
-# 	def update(self):		
-# 		# update the two static features
-# 		self.back_arm_rect.midbottom = self.base_pos
-# 		self.front_arm_rect.midbottom = self.base_pos
-
-# 		# update the rotating turret
-# 		new_pivot_screen_space = self.base_pos - self.pivot_offset
-
-# 		# # create a vector from the world space pos of the rotation axis to the mouse location
-# 		# now calculate the vector to the mouse_pos from new_pivot_screen_space
-# 		to_target = pg.math.Vector2(self.mouse_target) - new_pivot_screen_space
-# 		straight_up = pg.math.Vector2(0, -1)
-# 		self.angle = straight_up.angle_to(to_target)
-
-# 		self.turret_img, self.turret_rect = blit_rotate(self.orig_image, new_pivot_screen_space, self.pivot_coords, -self.angle)
-
-# 	def draw(self,screen):
-# 		# draw the turret sandwiched between the two static arms
-# 		screen.blits( 
-# 						[
-# 							(self.back_arm_img, self.back_arm_rect),
-# 							(self.turret_img, self.turret_rect),
-# 							(self.front_arm_img, self.front_arm_rect),		
-# 						]
-# 			)
-
-# 	def change_position(self,position_number):
-# 		self.current_base_number = position_number
-# 		if self.current_base_number == 1 or self.current_base_number == 2:
-# 			# setup for "Left" missile launcher images
-# 			pass
-# 		else:
-# 			# setup for "Right" missile launcher images
-# 			pass
-
-# 		self.base_pos = pg.Vector2(self.base_positions_dict[position_number])

@@ -35,7 +35,7 @@ class Target(pg.sprite.Sprite):
 		self.rect.center = self.centerLocation
 
 
-class RocketPath(pg.sprite.Sprite):
+class MissilePath(pg.sprite.Sprite):
 	def __init__(self,launch_pos,destination_pos,screen_size):
 		pg.sprite.Sprite.__init__(self)
 		window_w,window_h = screen_size
@@ -43,7 +43,7 @@ class RocketPath(pg.sprite.Sprite):
 		pg.draw.line(self.image, BLUE_GRAY, launch_pos, destination_pos, width=2)
 		self.rect = pg.Rect(0,0,window_w,window_h)
 
-class Rocket(pg.sprite.Sprite):
+class Missile(pg.sprite.Sprite):
 	ASSET_FILE = "./assets/missiles/missile_allred_cropped.png"
 	REDUCTION_SCALE = 8
 	PIVOTX = 213
@@ -54,12 +54,12 @@ class Rocket(pg.sprite.Sprite):
 		pg.sprite.Sprite.__init__(self)
 
 		self.target_object = Target( destination_pos ) 
-		self.path_object = RocketPath( launch_pos, destination_pos, game_obj.screen.get_size() )
+		self.path_object = MissilePath( launch_pos, destination_pos, game_obj.screen.get_size() )
 
 		# link up to the sprite groups
-		self.rockets_and_paths_sprites = game_obj.rockets_and_paths_sprites
-		self.rockets_and_paths_sprites.add( self.target_object )
-		self.rockets_and_paths_sprites.add( self.path_object )
+		self.missiles_and_paths_sprites = game_obj.missiles_and_paths_sprites
+		self.missiles_and_paths_sprites.add( self.target_object )
+		self.missiles_and_paths_sprites.add( self.path_object )
 
 		# don't add explosion yet. Add it when the rocket reaches its target.
 		self.explosion_sprites = game_obj.explosion_sprites

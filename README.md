@@ -19,7 +19,7 @@ Download the zip file to your machine.
     virutalenv -p python3 venv
     source ./venv/bin/activate
     pip install -r requirements.txt
-    ./missilecmd.py
+    ./main.py
 
 # Uninstall
 
