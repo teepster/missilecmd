@@ -23,7 +23,7 @@ Download the zip file to your machine.
 
 # Uninstall
 
-    rm -rf /tmp/missilecmd-main.py
+    rm -rf /tmp/missilecmd-main
     
 # Rules
 Keys 1,2 and 3 select the launcher.  
