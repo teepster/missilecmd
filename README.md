@@ -1,6 +1,10 @@
 # missilecmd
 Trying to re-create the Atari Missile Command of my youth. Trying to learn pygame.
 
+# Screen cap
+Turn on the sound. It's exciting. ;-)
+
+https://user-images.githubusercontent.com/14035893/153549624-133649ba-1fed-4a90-826d-200954db9bf7.mp4
 
 # Assets
 All assets with the exception of assets/launcher belong to their respective owners.
@@ -32,10 +36,5 @@ No limits on number of missiles.
 No way to die.  
 Press ESC to quit.  
 Enjoy!  
-
-# Screen cap
-Turn on the sound. It's exciting. ;-)
-
-https://user-images.githubusercontent.com/14035893/153549624-133649ba-1fed-4a90-826d-200954db9bf7.mp4
 
 
