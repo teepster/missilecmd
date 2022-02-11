@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
-from glob import escape
 import pygame as pg
 import random
-import sys
 
 from colors import BLACK, DARK_RED, DEEP_BLUE, WHITE, BLUE_GRAY, GRAY
 from util import gradientRect
-import turret
 
+import turret
 from missile import Missile
 from enemy import generateRandomEnemyPath, Enemy
 
@@ -40,10 +38,15 @@ class Game:
 		# spawn enemies
 		pg.time.set_timer(ENEMY_SPAWN_EVENT,ENEMY_SPWAN_FREQ)
 
-	def init_launch_site(self):
-		base_dict = turret.get_base_positions(SCREEN_W,SCREEN_H)
-		self.L, self.C, self.R = turret.setup_launcher_assets(base_dict)
-		self.active_launch_site = self.C	
+	def run(self):
+		# THE GAME LOOP
+		while not self.done:
+			self.event_loop()
+			self.update()
+			self.draw()
+
+			pg.display.flip()
+			self.clock.tick(FPS)
 
 	def setup_objects(self):
 		self.font = pg.font.Font("./assets/font/BebasNeue-Regular.ttf",72)
@@ -63,14 +66,10 @@ class Game:
 		# this is just the explosions from the rockets
 		self.explosion_sprites = pg.sprite.Group()
 
-	def run(self):
-		while not self.done:
-			self.event_loop()
-			self.update()
-			self.draw()
-
-			pg.display.flip()
-			self.clock.tick(FPS)
+	def init_launch_site(self):
+		base_dict = turret.get_base_positions(SCREEN_W,SCREEN_H)
+		self.L, self.C, self.R = turret.setup_launcher_assets(base_dict)
+		self.active_launch_site = self.C	
 
 	def draw(self):
 		self.screen.fill(self.bg_color)
@@ -100,6 +99,7 @@ class Game:
 			if event.type == pg.QUIT:
 				self.done = True
 			elif event.type == pg.MOUSEMOTION:
+				# this is so the turret can 'aim' at the target
 				self.active_launch_site.mouse_pos = pg.mouse.get_pos()
 			## SWITCH LAUNCH SITE
 			elif event.type == pg.KEYDOWN:
@@ -135,12 +135,10 @@ class Game:
 				pass
 
 	def update(self):
-		# self.launcher_sprite_group.update()
 		self.active_launch_site.update()
 		self.explosion_sprites.update()
 		self.missiles_and_paths_sprites.update()
 		self.enemies_sprites.update()
-		# see
 
 if __name__ == '__main__':
 	pg.init()
