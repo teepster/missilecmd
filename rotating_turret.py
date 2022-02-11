@@ -12,14 +12,14 @@ LaunchSite_Height_Offset = 10
 
 LAUNCHER_IMAGE_SCALE = 0.1
 
-L_LAUNCHER_FRONT_PIECE = '../missile_command/assets/launcher/Left/front_arm.png'
-L_LAUNCHER_TURRET_PIECE = '../missile_command/assets/launcher/Left/turret.png'
-L_LAUNCHER_BACK_PIECE = '../missile_command/assets/launcher/Left/back_arm.png'
+L_LAUNCHER_FRONT_PIECE = './assets/launcher/Left/front_arm.png'
+L_LAUNCHER_TURRET_PIECE = './assets/launcher/Left/turret.png'
+L_LAUNCHER_BACK_PIECE = './assets/launcher/Left/back_arm.png'
 L_LAUNCHER_TURRET_PIVOT = (424, 703)
 
-R_LAUNCHER_FRONT_PIECE = '../missile_command/assets/launcher/Right/front_arm.png'
-R_LAUNCHER_TURRET_PIECE = '../missile_command/assets/launcher/Right/turret.png'
-R_LAUNCHER_BACK_PIECE = '../missile_command/assets/launcher/Right/back_arm.png'
+R_LAUNCHER_FRONT_PIECE = './assets/launcher/Right/front_arm.png'
+R_LAUNCHER_TURRET_PIECE = './assets/launcher/Right/turret.png'
+R_LAUNCHER_BACK_PIECE = './assets/launcher/Right/back_arm.png'
 R_LAUNCHER_TURRET_PIVOT = (489, 703)
 
 def get_base_positions( screen_w, screen_h ):
